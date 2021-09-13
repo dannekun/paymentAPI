@@ -59,6 +59,7 @@ class PGWApplicationTests {
     void contextLoads() {
     }
 
+/*
     @Test
     void shouldSendCreatedOnPaymentCreated() throws Exception {
         String json = "{\"reference\": \"dan\", \"balance\": 100}";
@@ -68,6 +69,12 @@ class PGWApplicationTests {
         assertTrue(message.contains("dan"));
         assertTrue(message.contains("CREATED"));
     }
+
+ */
+
+
+
+
 
 
     public static class Lab1ApplicationTestsContextInitializer

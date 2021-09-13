@@ -1,6 +1,8 @@
 package se.nackademin.java20.pgw.presentation;
 
-public class PaymentDto {
+import java.io.Serializable;
+
+public class PaymentDto implements Serializable {
     private String reference;
     private long amount;
 

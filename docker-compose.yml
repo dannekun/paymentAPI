@@ -5,20 +5,25 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=payments
-    ports:
-      - "3306:3306"
   payment-gw:
-    image: payment-gw:0.0.1
-    environment:
-      - MYSQL_HOST=mysql
-      - SPRING_RABBITMQ_HOST=rabbit
-      - SPRING_RABBITMQ_PORT=5672
-    ports:
-      - "8080:8080"
-    depends_on:
-      - rabbit
+      image: payment-gw:0.0.1
+      environment:
+        - MYSQL_HOST=mysql
+        - SPRING_RABBITMQ_HOST=rabbit
+        - SPRING_RABBITMQ_PORT=5672
+        - lab2_host=lab2:8080
+      ports:
+        - "8080:8080"
+      depends_on:
+        - rabbit
   rabbit:
-    image: rabbitmq:3.9.5
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+      image: rabbitmq:3.9.5
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+  lab2:
+      image: gr07/hakim:0.0.1
+      environment:
+        - MYSQL_HOST=mysql-hakim
+      ports:
+        - "8083:8080"

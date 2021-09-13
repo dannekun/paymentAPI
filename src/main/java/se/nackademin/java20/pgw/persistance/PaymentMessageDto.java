@@ -18,4 +18,18 @@ public class PaymentMessageDto {
         this.status = status;
     }
 
+    public String getReference() {
+        return reference;
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+
+
 }
