@@ -5,6 +5,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,7 @@ import java.util.List;
 @ConfigurationProperties("lab2")
 public class ApplicationConfiguration {
 
+    /*
     @Bean
     public RestTemplate restTemplate() {
         final RestTemplate restTemplate = new RestTemplate();
@@ -44,6 +46,15 @@ public class ApplicationConfiguration {
         restTemplate.setMessageConverters(messageConverters);
 
         return new RestTemplate();
+    }
+
+     */
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory, final Jackson2JsonMessageConverter converter) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(converter);
+        return rabbitTemplate;
     }
 
     @Bean
@@ -86,8 +97,14 @@ public class ApplicationConfiguration {
         return new Jackson2JsonMessageConverter();
     }
 
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
 
 
+
+/*
     @Value("lab2.host")
     private String host;
 
@@ -98,5 +115,7 @@ public class ApplicationConfiguration {
     public void setHost(String host) {
         this.host = host;
     }
+
+ */
 
 }
